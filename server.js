@@ -1,3 +1,16 @@
+// npm init
+// npm install express --save
+// npm install ejs --save
+// npm install nodemon --save-dev (para restatar automaticamente o servidor)
+// npm install body-parser --save (para pegar o form)
+// npm install mongodb --save 
+
+//iniciar o servidor
+//node server.js
+//npm run dev
+
+
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
