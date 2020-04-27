@@ -9,14 +9,14 @@
 //node server.js
 //npm run dev
 
-
+//"mongodb+srv://ulysses:Joao0316@crud-nodejs-mfxqd.mongodb.net/test?retryWrites=true&w=majority"
 
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID
-const uri = "mongodb+srv://ulysses:Joao0316@crud-nodejs-mfxqd.mongodb.net/test?retryWrites=true&w=majority"
+const uri = 'mongodb://localhost:27017/crud-nodejs'
 
 MongoClient.connect(uri, (err, cliente) =>{
     if (err) return console.log(err)
@@ -41,7 +41,9 @@ app.get('/', (req, res) =>{
 })
 
 app.get('/show', (req, res) => {
-    db.collection('data').find().toArray((err, results) => {
+    var nome = "pri"
+    var busca = { name: RegExp(nome, 'i')}
+    db.collection('data').find(busca).toArray((err, results) => {
         if (err) return console.log(err)
         res.render('show.ejs', { data: results})
     })
@@ -76,7 +78,7 @@ app.route('/edit/:id')
     }, (err, result) => {
         if (err) return res.send(err)
         res.redirect('/show')
-        console.log('Arualizado no Banco de dados')
+        console.log('Atualizado no Banco de dados')
     })
 })
 
