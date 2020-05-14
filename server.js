@@ -36,21 +36,15 @@ app.get('/', (req, res) =>{
     res.render('index.ejs')
 })
 
-app.get('/', (req, res) =>{
-    var cursor = db.collection('data').find()
-})
-
 app.get('/show', (req, res) => {
-    var nome = "pri"
-    var busca = { name: RegExp(nome, 'i')}
-    db.collection('data').find(busca).toArray((err, results) => {
+    db.collection('data').find().toArray((err, results) => {
         if (err) return console.log(err)
         res.render('show.ejs', { data: results})
     })
 })
 
 app.post('/show', (req, res) =>{
-    db.collection('data').save(req.body, (err, result) =>{
+    db.collection('data').insertOne(req.body, (err, result) =>{
         if (err) return console.log(err)
         console.log('salvo no banco de dados')
         res.redirect('/')
@@ -67,13 +61,15 @@ app.route('/edit/:id')
 })
 .post((req, res) =>{
     var id = req.params.id
-    var name = req.body.name
-    var surname = req.body.surname
+    var nome = req.body.nome
+    var telefone = req.body.telefone
+    var email = req.body.email
 
     db.collection('data').updateOne({_id: ObjectId(id)}, {
         $set: {
-            name: name,
-            surname: surname
+            nome: nome,
+            telefone: telefone,
+            email: email
         }
     }, (err, result) => {
         if (err) return res.send(err)

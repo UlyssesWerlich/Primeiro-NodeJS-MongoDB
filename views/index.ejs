@@ -7,9 +7,23 @@
     <body>
         <h2>Registrar</h2>
         <form action="/show" method="POST">
-            <input type="text" placeholder="Nome" name="name">
-            <input type="text" placeholder="Sobrenome" name="surname">
-            <button type="submit">Salvar</button>
+
+            <label for="nome">Nome</label><br>
+            <input type="text" name="nome" placeholder="Digite seu nome completo">
+            <br>
+
+            <br>
+            <label for="telefone">Telefone</label><br>
+            <input type="tel" name="telefone" placeholder="Digite seu telefone">
+            <br>
+
+            <br>
+            <label for="email">E-mail</label><br>
+            <input type="email" name="email" placeholder="Digite seu e-mail">
+            <br>
+
+            <br>
+            <input type="submit" value="Cadastrar">
         </form>
         <p><a href='/show'>Consulta</a></p>
     </body>
